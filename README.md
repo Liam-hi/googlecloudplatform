@@ -21,6 +21,13 @@ gcloud projects list
 
 ```
 
+Select Project
+
+```
+gcloud config set project PROJECT_ID
+
+```
+
 Remove Cloud Run
 
 ```
