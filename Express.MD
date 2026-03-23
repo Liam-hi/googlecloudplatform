@@ -49,6 +49,42 @@ app.listen(PORT, () => {
 
 ```
 
+En funktion i backend-miljö
+
+```
+app.post("/multiply", (req, res) => {
+  const { number } = req.body;
+  if (typeof number !== "number") return res.status(400).json({ error: "Invalid input" });
+  res.json({ result: number * 10 });
+});
+
+```
+
+Frontend för funktionen
+
+```
+const [result, setResult] = useState(null);
+
+async function multiply(number) {
+  const res = await fetch('http://localhost:3000/multiply', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ number })
+  });
+  const data = await res.json();
+  setResult(data.result);
+}
+
+return (
+  <div>
+    <button onClick={() => multiply(5)}>Multiplicera 5</button>
+    {result && <p>Svar: {result}</p>}
+  </div>
+)
+
+```
+
+
 
 
 
