@@ -4,13 +4,11 @@ Skapa en Bucket
 
 ```
 gcloud storage buckets create gs://my-asset-app13456-assets --location=europe-north1
-
 ```
 Samtliga Buckets i GCP
 
 ```
 gcloud storage buckets list
-
 ```
 
 Quick Guide
@@ -33,8 +31,6 @@ app.get('/upload', async (req, res) => {
     res.status(500).send('Fel');
   }
 });
-
-
 ```
 
 Test
@@ -42,15 +38,12 @@ Test
 ```
 echo "hej" > test.txt
 gcloud storage cp test.txt gs://certain-haiku-490808-a6-hej
-
-
 ```
 
 Ladda upp en fil
 
 ```
 npm i multer
-
 ```
 
 Multer - Quick Start
@@ -124,7 +117,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);
 });
-
 ```
 
 Kör
@@ -135,7 +127,5 @@ gcloud run deploy fresh-start \
   --region europe-north1 \
   --allow-unauthenticated \
   --set-env-vars GCS_BUCKET_NAME=SECRET
-
-
 ```
 
