@@ -1,4 +1,4 @@
-# Express Quick Setup (JavaScript)
+# Express Quick Setup (TypeScript)
 
 Skapa en package.json
 
