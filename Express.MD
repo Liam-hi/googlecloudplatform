@@ -29,10 +29,11 @@ Lägg till följande i package.json
 
 ```
 
-Installera types för cors 
+Installera types för cors och express
 
 ```
 npm i --save-dev @types/cors
+npm i --save-dev @types/express
 
 ```
 
