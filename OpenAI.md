@@ -28,6 +28,8 @@ app.post("/openai", async (req, res) => {
       input: prompt,
     });
 
+    const result = response.output_text;
+
     res.json({ result: response.output_text });
   } catch (error) {
     console.error(error);
