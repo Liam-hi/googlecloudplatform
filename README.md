@@ -215,3 +215,64 @@ app.delete("/items/:id", async (req, res) => {
 });
 
 ``` 
+
+Bättre fast enkel
+
+```
+app.post("/openai", async (req, res) => {
+  try {
+    const { prompt } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt saknas" });
+    }
+
+    const response = await client.responses.create({
+      model: "gpt-4o-mini",
+      instructions: "You are an expert LinkedIn content strategist. Transform any input text into a polished, professional LinkedIn post.",
+      input: prompt,
+    });
+
+    const result = response.output_text;
+
+    // Spara i databasen
+    await db.collection('items').add({
+      prompt: prompt,
+      result: result,
+      createdAt: new Date()
+    });
+
+    res.json({ result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "500" });
+  }
+});
+
+
+app.get("/items", async (req, res) => {
+  try {
+    const snapshot = await db.collection("items").get();
+
+    const responses = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    res.json(responses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+app.delete("/items/:id", async (req, res) => {
+  try {
+    await db.collection("items").doc(req.params.id).delete();
+    res.json({ ok: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+``` 
