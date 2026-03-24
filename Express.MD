@@ -25,13 +25,22 @@ Lägg till följande i package.json
 ```
 "start": "node server.js"
 
+ "type": "module",
+
+```
+
+Installera types för cors 
+
+```
+npm i --save-dev @types/cors
+
 ```
 
 Boilerplate
 
 ```
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
 const app = express();
 app.use(cors());
@@ -42,10 +51,8 @@ app.get("/health", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 ```
 
