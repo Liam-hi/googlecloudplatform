@@ -150,6 +150,8 @@ initializeApp({
   credential: applicationDefault(),
 });
 
+const db = getFirestore();
+
 app.get('/save', async (req, res) => {
   await db.collection('items').add({ text: 'Hello' });
   res.send('Sparat!');
