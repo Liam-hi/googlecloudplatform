@@ -23,7 +23,7 @@ npm i cors
 Lägg till följande i package.json
 
 ```
-"start": "node server.js"
+"start": "node index.js"
 
  "type": "module",
 
